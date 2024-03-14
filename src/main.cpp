@@ -1,18 +1,18 @@
-#include <Arduino.h>
+#include <Adafruit_NeoPixel.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define PIN        6  // Pin connected to the NeoPixel ring
+#define NUMPIXELS 16  // Number of LEDs in the NeoPixel ring
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pixels.begin();  // Initialize the NeoPixel library
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  for(int i=0; i<NUMPIXELS; i++) {  // For each pixel...
+    pixels.setPixelColor(i, pixels.Color(0, 150, 0));  // Set the pixel color to green
+    pixels.show();  // Update the ring with the new color
+    delay(50);  // Wait for 50 milliseconds
+  }
 }
